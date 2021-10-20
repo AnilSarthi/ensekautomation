@@ -1,0 +1,29 @@
+{
+	"id": "eb700b58-7ec2-413c-917f-a1c710fa0e0b",
+	"name": "ENSEK Env",
+	"values": [
+		{
+			"key": "energy_id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "Bearer_Token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "remainingQuantity",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "gasPurchaseQuantity",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-10-20T09:37:42.734Z",
+	"_postman_exported_using": "Postman/8.6.1"
+}

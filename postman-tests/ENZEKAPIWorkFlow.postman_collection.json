@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "d61fe756-d372-4bb9-8e84-aed6883ec084",
+		"name": "ENZEKAPIWorkFlow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ENZEK CRUD TEST - GAS",
+			"item": [
+				{
+					"name": "1. Energy ResetUnAuth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Reset request Success\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Unauthorized\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://ensekapicandidatetest.azurewebsites.net/reset",
+							"protocol": "http",
+							"host": [
+								"ensekapicandidatetest",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"reset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Energy Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"Bearer_Token\", jsonData.access_token);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"test\",\n  \"password\": \"testing\"\n}"
+						},
+						"url": {
+							"raw": "http://ensekapicandidatetest.azurewebsites.net/login",
+							"protocol": "http",
+							"host": [
+								"ensekapicandidatetest",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Energy Reset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Reset request Success\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Success\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Bearer_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://ensekapicandidatetest.azurewebsites.net/reset",
+							"protocol": "http",
+							"host": [
+								"ensekapicandidatetest",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"reset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Get All Energy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"energy_id\", jsonData.gas.energy_id);\r",
+									"postman.setEnvironmentVariable(\"gasPurchaseQuantity\", 3000);\r",
+									"\r",
+									"pm.test(\"Verify quanity for electric\", function () {\r",
+									"    pm.expect(jsonData.electric.quantity_of_units).to.eql(4322);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify quanity for Gas\", function () {\r",
+									"    pm.expect(jsonData.gas.quantity_of_units).to.eql(3000);\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify quanity for nuclear\", function () {\r",
+									"    pm.expect(jsonData.nuclear.quantity_of_units).to.eql(0);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify quanity for Oil\", function () {\r",
+									"    pm.expect(jsonData.oil.quantity_of_units).to.eql(20);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://ensekapicandidatetest.azurewebsites.net/energy",
+							"protocol": "http",
+							"host": [
+								"ensekapicandidatetest",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"energy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. BuyEnergyGas3000",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Verify Purchase message with purchased quantity and remaining Unit\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(pm.environment.get(\"gasPurchaseQuantity\")).include(\"are 0 units remaining\");\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://ensekapicandidatetest.azurewebsites.net/buy/{{energy_id}}/{{gasPurchaseQuantity}}",
+							"protocol": "http",
+							"host": [
+								"ensekapicandidatetest",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"buy",
+								"{{energy_id}}",
+								"{{gasPurchaseQuantity}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. VerifyGetAllEnergy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"remainingQuantity\", jsonData.gas.quantity_of_units);\r",
+									"\r",
+									"pm.test(\"Verify remaining Gas quantity\", function () {\r",
+									"    pm.expect(pm.environment.get(\"remainingQuantity\")).to.eql(0);\r",
+									"    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://ensekapicandidatetest.azurewebsites.net/energy",
+							"protocol": "http",
+							"host": [
+								"ensekapicandidatetest",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"energy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

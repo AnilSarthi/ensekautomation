@@ -1,0 +1,240 @@
+{
+	"id": "b31f57f8-ab24-4117-b93f-52a513d44f40",
+	"name": "ENZEKAPIWorkFlow",
+	"timestamp": "2021-10-20T00:13:19.508Z",
+	"collection_id": "d61fe756-d372-4bb9-8e84-aed6883ec084",
+	"folder_id": 0,
+	"environment_id": "eb700b58-7ec2-413c-917f-a1c710fa0e0b",
+	"totalPass": 12,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "79ce807c-f1cb-47b8-a9b2-effb5a938385",
+			"name": "1. Energy ResetUnAuth",
+			"url": "http://ensekapicandidatetest.azurewebsites.net/reset",
+			"time": 123,
+			"responseCode": {
+				"code": 401,
+				"name": "UNAUTHORIZED"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Reset request Success": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Reset request Success": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				123
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Reset request Success": true
+				}
+			]
+		},
+		{
+			"id": "e1f41f84-8ee4-41c8-a954-5770e23e17f1",
+			"name": "2. Energy Login",
+			"url": "http://ensekapicandidatetest.azurewebsites.net/login",
+			"time": 33,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "1175b322-916f-4599-afdd-dfb893cb4659",
+			"name": "3. Energy Reset",
+			"url": "http://ensekapicandidatetest.azurewebsites.net/reset",
+			"time": 31,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Reset request Success": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Reset request Success": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Reset request Success": true
+				}
+			]
+		},
+		{
+			"id": "2e44955b-0955-4133-96b4-22c085dd8898",
+			"name": "4. Get All Energy",
+			"url": "http://ensekapicandidatetest.azurewebsites.net/energy",
+			"time": 28,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify quanity for electric": true,
+				"Verify quanity for Gas": true,
+				"Verify quanity for nuclear": true,
+				"Verify quanity for Oil": true
+			},
+			"testPassFailCounts": {
+				"Verify quanity for electric": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify quanity for Gas": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify quanity for nuclear": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify quanity for Oil": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Verify quanity for electric": true,
+					"Verify quanity for Gas": true,
+					"Verify quanity for nuclear": true,
+					"Verify quanity for Oil": true
+				}
+			]
+		},
+		{
+			"id": "0c2efc5f-1d9c-44c0-989c-bd3774c88630",
+			"name": "5. BuyEnergyGas3000",
+			"url": "http://ensekapicandidatetest.azurewebsites.net/buy/1/3000",
+			"time": 29,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Verify Purchase message with purchased quantity and remaining Unit": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify Purchase message with purchased quantity and remaining Unit": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				29
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Verify Purchase message with purchased quantity and remaining Unit": true
+				}
+			]
+		},
+		{
+			"id": "cc4efb24-b0d7-41e0-8ac2-d3e0d26813f1",
+			"name": "6. VerifyGetAllEnergy",
+			"url": "http://ensekapicandidatetest.azurewebsites.net/energy",
+			"time": 30,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify remaining Gas quantity": true
+			},
+			"testPassFailCounts": {
+				"Verify remaining Gas quantity": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"Verify remaining Gas quantity": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 274,
+	"collection": {
+		"requests": [
+			{
+				"id": "79ce807c-f1cb-47b8-a9b2-effb5a938385",
+				"method": "POST"
+			},
+			{
+				"id": "e1f41f84-8ee4-41c8-a954-5770e23e17f1",
+				"method": "POST"
+			},
+			{
+				"id": "1175b322-916f-4599-afdd-dfb893cb4659",
+				"method": "POST"
+			},
+			{
+				"id": "2e44955b-0955-4133-96b4-22c085dd8898",
+				"method": "GET"
+			},
+			{
+				"id": "0c2efc5f-1d9c-44c0-989c-bd3774c88630",
+				"method": "PUT"
+			},
+			{
+				"id": "cc4efb24-b0d7-41e0-8ac2-d3e0d26813f1",
+				"method": "GET"
+			}
+		]
+	}
+}
